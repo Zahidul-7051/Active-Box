@@ -17,6 +17,7 @@ ul {
 
 a {
   text-decoration: none;
+  /* display: inline-block; */
 }
 
 .container {
@@ -26,51 +27,74 @@ a {
   box-sizing: border-box;
 }
 
-/* ------------------- Banner Section ------------------- */
+/* ------------------ Header Section ------------------- */
 
-.banner {
+
+.header {
   background-image: url(./image/banner.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  text-align: center;
-  height: 653px;
+  position: fixed;
+  width: 100%;
+  z-index: 9;
 }
 
-.banner .header {
+.header .container {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   color: #505268;
   align-items: center;
   padding: 15px 0;
 }
 
-.banner .header img {
+.header .logo img {
   height: 25px;
   width: 200px;
 }
 
-.banner .header ul {
+.header ul {
   display: flex;
-  column-gap: 50px;
+  column-gap: 20px;
 }
 
-.banner .header a {
+.header ul li {
+  padding: 15px 0;
+}
+
+.header ul li a{
   font-size: 13px;
   font-weight: 500;
   line-height: 18px;
   color: #ccccd3;
   text-transform: uppercase;
   font-family: 'Raleway', sans-serif;
-  padding: 4px;
+  padding: 15px 25px;
 }
 
-.banner .contant {
-  margin-top: 120px;
+.header ul li:nth-last-child(1) a {
+  padding-right: 0;
 }
 
-.banner .contant h1 {
+
+
+/* ------------------- Banner Section ------------------- */
+
+.banner{
+  background-image: url(./image/banner.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.banner .container {
+  padding-top: 220px;
+  padding-bottom: 150px;
+}
+
+.banner .container h1 {
   font-size: 65px;
   font-weight: 900;
   line-height: 72px;
@@ -80,7 +104,7 @@ a {
   margin: 0 25px;
 }
 
-.banner .contant p {
+.banner .container p {
   font-size: 22px;
   font-weight: 400;
   line-height: 28px;
@@ -89,7 +113,7 @@ a {
   margin: 30px 100px 70px 100px;
 }
 
-.banner .contant .btn {
+.banner .container .btn {
   background-color: #e84545;
   color: #fdf3f3;
   border: 2px solid #e84545;
@@ -97,9 +121,10 @@ a {
   font-size: 13px;
   font-weight: 400;
   line-height: 15px;
+  border-radius: 2px;
 }
 
-.banner .contant .btn:hover {
+.banner .container .btn:hover {
   background: none;
   color: #e84545;
   font-size: 13px;
@@ -141,23 +166,70 @@ a {
 
 
 /* -------------------- Gallery Section ---------------------- */
+
 .gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   column-gap: 1px;
   row-gap: 1px;
-  justify-items: center;
+  justify-content: center;
 }
 
-.gallery a {
-    width: 336px;
-    height: 244px;
+.gallery .item {
+  max-width: calc(25% - 1px);
+  max-height: 350px;
+  position: relative;
+  cursor: pointer;
 }
 
-.gallery img {
-    width: 336px;
-    height: 244px;
+.gallery .item img {
+  width: 100%;
+  /* max-height: 350px; */
+  height: 100%;
 }
+
+.gallery .item .overly {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	transition: 0.4s all ease-in-out;
+}
+
+.gallery .item:hover .overly {
+  background-color: rgba(28, 30, 39, 0.685);
+}
+
+.gallery .item .contant {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s all ease-in-out;
+  visibility: hidden;
+}
+
+.gallery .item:hover .contant {
+  visibility: visible;
+}
+
+.gallery .item .contant h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.gallery .item .contant p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+  text-transform: capitalize;
+  text-align: center;
+}
+
 
 /* ------------------------- Employ Section --------------------- */
 
@@ -168,11 +240,16 @@ a {
 .employ .container {
   display: flex;
   column-gap: 30px;
+  justify-content: space-between;
+}
+
+.employ .container .contant {
+  max-width: calc(25% - 22.5px);
 }
 
 .employ .container img {
-  height: 270px;
-  width: 270px;
+  max-height: 270px;
+  max-width: 270px;
 }
 
 .employ .container h3 {
@@ -197,7 +274,6 @@ a {
   font-size: 14px;
   line-height: 18px;
   font-weight: 500;
-  text-transform: uppercase;
   color: #6c7279;
   margin-top: 20px;
   margin-bottom: 25px;
@@ -208,22 +284,21 @@ a {
   column-gap: 5px;
 }
 
-.employ .container li .fa-facebook-f {
+.employ .container ul li a {
   color: #6c7279;
-  border: 2px solid #6c7279;
-  padding: 12px 15px;
+  border: 1px solid #6c7279;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
 }
 
-.employ .container li .fa-twitter {
-  color: #6c7279;
-  border: 2px solid #6c7279;
-  padding: 12px;
-}
-
-.employ .container li .fa-linkedin {
-  color: #6c7279;
-  border: 2px solid #6c7279;
-  padding: 12px 13px;
+.employ .container ul li a:hover {
+  border: 1px solid #2d3033;
+  color: #2d3033;
+  transition: 0.5s all ease-in-out;
 }
 
 
@@ -232,25 +307,30 @@ a {
   display: flex;
   text-align: center;
   height: 500px;
+  justify-content: center;
+  background-color: #53354a;
 }
 
-.message .img {
+.message .image {
     width: 50%;
 }
 
-.message .img img{
-    width: 685px;
-    height: 500px;
+.message .image img{
+    /* width: 685px;
+    height: 500px; */
+    max-width: 100%;
+    height: 100%;
 }
 
 .message .contant {
   background-color: #53354a;
+  width: 50%;
 }
 
 .message .contant .pera {
-  margin-left: 45px;
-  margin-right: 119px;
-  margin-top: 119px;
+  padding-left: 45px;
+  padding-right: 119px;
+  padding-top: 119px;
 }
 
 .message .contant h2 {
@@ -312,7 +392,6 @@ a {
   padding: 18px 82px;
   text-transform: uppercase;
 }
-
 
 .download .container a:hover {
   background: none;
